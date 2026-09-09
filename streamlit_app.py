@@ -59,4 +59,4 @@ with st.expander("Input features"):
   st.write("**Input Data**")
   input_df
 
-xgb_model = joblib.load("xgb_model.pkl")
+
