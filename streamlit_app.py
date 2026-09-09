@@ -72,7 +72,7 @@ st.subheader("Prediction")
 if st.button("Predict Loan Status"):
     prediction = xgb_model.predict(input_df)
     prediction
-    if prediction[0] == 1:
+    if prediction[0] == 0:
         st.error("Loan Rejected")
     else:
         st.success("Loan Approved!")
