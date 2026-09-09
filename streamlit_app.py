@@ -9,3 +9,7 @@ with st.expander("Data"):
   st.write("**Raw Data**")
   df=pd.read_csv("https://raw.githubusercontent.com/MohamedReda323/fp-machinelearning1/refs/heads/master/loan_data.csv")
   df
+  
+  st.write("**X**")
+  X=df.drop("loan_status",axis=1)
+  X
