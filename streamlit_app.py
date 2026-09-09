@@ -70,7 +70,7 @@ xgb_model = joblib.load("xgb_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
 
-    input_df = scaler.transform(input_df) 
+input_df = scaler.transform(input_df) 
 
 
 if hasattr(xgb_model, "feature_names_in_"):
