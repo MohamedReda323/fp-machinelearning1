@@ -51,7 +51,7 @@ with st. sidebar:
       "loan_percent_income": [loan_percent_income],
       "cb_person_cred_hist_length": [cb_person_cred_hist_length],
       "credit_score": [credit_score],
-      "previous_loan_defaults_on_file": [1 if previous_loan_defaults_on_file == "Yes" else 0]
+      "previous_loan_defaults_on_file": [1 if previous_loan_defaults_on_file == "Yes" else 0],
       "person_home_ownership_OTHER": [1 if person_home_ownership == "OTHER" else 0],
       "person_home_ownership_OWN": [1 if person_home_ownership == "OWN" else 0],
       "person_home_ownership_RENT": [1 if person_home_ownership == "RENT" else 0],
