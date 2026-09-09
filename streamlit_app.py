@@ -53,7 +53,7 @@ with st. sidebar:
       "credit_score":credit_score,
       "previous_loan_defaults_on_file":previous_loan_defaults_on_file
   }
-  input_df = pd.DataFrame(data,index[0])
+  input_df = pd.DataFrame(data,index=[0])
   input_df
 
 
