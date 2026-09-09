@@ -30,6 +30,8 @@ with st. sidebar:
   Home_ownership = st.selectbox("Home ownership",("RENT", "MORTGAGE", "OWN", "OTHER"))
   loan_intent = st.selectbox("Loan intent",("EDUCATION", "MEDICAL", "VENTURE", "PERSONAL", "DEBTCONSOLIDATION", "HOMEIMPROVEMENT"))
   previous_loan_defaults_on_file = st.selectbox("Loan defaults",("Yes","No"))
-  person_age = st.slider("Age",20.00,78.00,26.00,1.00)
+  person_age = st.slider("Age",20,78,26,1)
   person_income = st.slider("Income",8000.00,168667.12,67045.50)
+  
+
 
