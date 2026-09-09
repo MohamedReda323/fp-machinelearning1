@@ -62,6 +62,7 @@ with st. sidebar:
       "loan_intent_VENTURE": [1 if loan_intent == "VENTURE" else 0]  
   }
   input_df = pd.DataFrame(data)
+  
 with st.expander("Input features"):
     st.write("**Input Data**")
     st.dataframe(input_df) 
@@ -72,29 +73,22 @@ scaler = joblib.load("scaler.pkl")
 
 expected_columns = scaler.feature_names_in_
 
-# 2. لو في عمود الموديل مستنيه (زي الفئات اللي انت مش حاططها في القاموس) نحطه بـ صفر
 for col in expected_columns:
     if col not in input_df.columns:
         input_df[col] = 0
 
-# 3. نرتب الداتا فريم بتاعتنا نفس الترتيب بالظبط
 input_df = input_df[expected_columns]
 
-# 4. نعمل سكيلنج دلوقتي وإحنا مطمنين 100% ونحتفظ بيها كـ DataFrame
 input_df_scaled = pd.DataFrame(scaler.transform(input_df), columns=expected_columns)
-# ==========================================
 
 st.subheader("Prediction")
 if st.button("Predict Loan Status"):
-    # نتوقع باستخدام الداتا المترتبة والمعمولها سكيل صح
+  
     prediction = xgb_model.predict(input_df_scaled)
-    
-    # نجيب نسبة الثقة (Probability) عشان نفهم الموديل بيفكر ازاي
     proba = xgb_model.predict_proba(input_df_scaled)[0]
     st.write(f"**Approval Probability:** {proba[1] * 100:.2f}%")
     st.write(f"**Rejection Probability:** {proba[0] * 100:.2f}%")
-    
     if prediction[0] == 0:
-        st.error("Loan Rejected ❌")
+        st.error("Loan Rejected")
     else:
-        st.success("Loan Approved! 🎉")
+        st.success("Loan Approved!")
