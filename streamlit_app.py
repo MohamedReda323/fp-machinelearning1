@@ -20,3 +20,6 @@ with st.expander("Data"):
 
 with st.expander("Data visualization"):
   st.scatter_chart(data=df, x="person_age", y="person_emp_exp", color="loan_status")
+
+with st.sidebar:
+  st.header("Input feature")
