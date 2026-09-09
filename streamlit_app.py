@@ -13,3 +13,7 @@ with st.expander("Data"):
   st.write("**X**")
   X=df.drop("loan_status",axis=1)
   X
+
+  st.write("**y**")
+  y=df.species
+  y
