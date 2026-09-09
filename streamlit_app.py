@@ -46,22 +46,30 @@ with st. sidebar:
       ],
       "person_income": [person_income],
       "person_emp_exp": [person_emp_exp],
-      "person_home_ownership_MORTGAGE": [1 if person_home_ownership == "MORTGAGE" else 0],
-      "person_home_ownership_OTHER": [1 if person_home_ownership == "OTHER" else 0],
-      "person_home_ownership_OWN": [1 if person_home_ownership == "OWN" else 0],
-      "person_home_ownership_RENT": [1 if person_home_ownership == "RENT" else 0],
-      "loan_intent_DEBTCONSOLIDATION": [1 if loan_intent == "DEBTCONSOLIDATION" else 0],
-      "loan_intent_EDUCATION": [1 if loan_intent == "EDUCATION" else 0],
-      "loan_intent_HOMEIMPROVEMENT": [1 if loan_intent == "HOMEIMPROVEMENT" else 0],
-      "loan_intent_MEDICAL": [1 if loan_intent == "MEDICAL" else 0],
-      "loan_intent_PERSONAL": [1 if loan_intent == "PERSONAL" else 0],
-      "loan_intent_VENTURE": [1 if loan_intent == "VENTURE" else 0],
       "loan_amnt": [loan_amnt],
       "loan_int_rate": [loan_int_rate],
       "loan_percent_income": [loan_percent_income],
       "cb_person_cred_hist_length": [cb_person_cred_hist_length],
       "credit_score": [credit_score],
       "previous_loan_defaults_on_file": [1 if previous_loan_defaults_on_file == "Yes" else 0]
+      "person_home_ownership_OTHER": [1 if person_home_ownership == "OTHER" else 0],
+      "person_home_ownership_OWN": [1 if person_home_ownership == "OWN" else 0],
+      "person_home_ownership_RENT": [1 if person_home_ownership == "RENT" else 0],
+      "loan_intent_EDUCATION": [1 if loan_intent == "EDUCATION" else 0],
+      "loan_intent_HOMEIMPROVEMENT": [1 if loan_intent == "HOMEIMPROVEMENT" else 0],
+      "loan_intent_MEDICAL": [1 if loan_intent == "MEDICAL" else 0],
+      "loan_intent_PERSONAL": [1 if loan_intent == "PERSONAL" else 0],
+      "loan_intent_VENTURE": [1 if loan_intent == "VENTURE" else 0],
+
+
+      # "person_home_ownership_MORTGAGE": [1 if person_home_ownership == "MORTGAGE" else 0],
+      
+
+      
+      # "loan_intent_DEBTCONSOLIDATION": [1 if loan_intent == "DEBTCONSOLIDATION" else 0],
+      
+      
+      
   }
   input_df = pd.DataFrame(data)
 with st.expander("Input features"):
