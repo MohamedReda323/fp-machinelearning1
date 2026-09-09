@@ -69,12 +69,7 @@ with st.expander("Input features"):
 xgb_model = joblib.load("xgb_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
-
 input_df = scaler.transform(input_df) 
-
-
-if hasattr(xgb_model, "feature_names_in_"):
-  input_df = input_df.reindex(columns=xgb_model.feature_names_in_, fill_value=0)
 
 st.subheader("Prediction")
 if st.button("Predict Loan Status"):
