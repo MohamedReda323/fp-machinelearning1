@@ -17,3 +17,6 @@ with st.expander("Data"):
   st.write("**y**")
   y=df.loan_status
   y
+
+with st.expander("Data visualization"):
+  st.scatter_chart(data=df, x="person_age", y="person_emp_exp", color="loan_status")
