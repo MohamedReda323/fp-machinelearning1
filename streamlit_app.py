@@ -23,7 +23,7 @@ with st.expander("Data visualization"):
 
 with st. sidebar:
   st.header("Input feature")
-  #person_income,person_emp_exp,loan_amnt,loan_int_rate,loan_percent_income,
+  #person_emp_exp,loan_amnt,loan_int_rate,loan_percent_income,
   #cb_person_cred_hist_length,credit_score,loan_status
   Gender = st.selectbox("Gender",("male","female"))
   Education = st.selectbox("Education",("High School", "Associate", "Bachelor", "Master", "Doctorate"))
@@ -32,6 +32,6 @@ with st. sidebar:
   previous_loan_defaults_on_file = st.selectbox("Loan defaults",("Yes","No"))
   person_age = st.slider("Age",20,78,26,1)
   person_income = st.slider("Income",8000.00,168667.12,67045.50)
-  
+  person_emp_exp = st.slider("Years of Experience",0,58,4,1)
 
 
