@@ -55,42 +55,8 @@ with st. sidebar:
       "previous_loan_defaults_on_file":previous_loan_defaults_on_file
   }
   input_df = pd.DataFrame(data,index=[0])
-
 with st.expander("Input features"):
   st.write("**Input Data**")
   input_df
 
 xgb_model = joblib.load("xgb_model.pkl")
-
-
-input_df["person_gender"] = input_df["person_gender"].map({"male": 1, "female": 0})
-input_df["previous_loan_defaults_on_file"] = input_df["previous_loan_defaults_on_file"].map({"Yes": 1, "No": 0})
-
-education_mapping = {
-    "High School": 1,
-    "Associate": 2,
-    "Bachelor": 3,
-    "Master": 4,
-    "Doctorate": 5
-}
-input_df["person_education"] = input_df["person_education"].map(education_mapping)
-
-input_df = pd.get_dummies(input_df, columns=["person_home_ownership", "loan_intent"], drop_first=True)
-
-if hasattr(xgb_model, "feature_names_in_"):
-    input_df = input_df.reindex(columns=xgb_model.feature_names_in_, fill_value=0)
-
-
-st.subheader("Prediction")
-if st.button("Predict Loan Status"):
-    prediction = xgb_model.predict(input_df)
-    prediction_proba = xgb_model.predict_proba(input_df)
-    
-    if prediction[0] == 1:
-        st.error(f"Loan Rejected ❌ (High Risk - Probability: {prediction_proba[0][1]:.2f})")
-    else:
-        st.success(f"Loan Approved! ✅ (Low Risk - Probability: {prediction_proba[0][0]:.2f})")
-
-
-
-
