@@ -59,17 +59,7 @@ with st. sidebar:
       "loan_intent_HOMEIMPROVEMENT": [1 if loan_intent == "HOMEIMPROVEMENT" else 0],
       "loan_intent_MEDICAL": [1 if loan_intent == "MEDICAL" else 0],
       "loan_intent_PERSONAL": [1 if loan_intent == "PERSONAL" else 0],
-      "loan_intent_VENTURE": [1 if loan_intent == "VENTURE" else 0]
-
-
-      # "person_home_ownership_MORTGAGE": [1 if person_home_ownership == "MORTGAGE" else 0],
-      
-
-      
-      # "loan_intent_DEBTCONSOLIDATION": [1 if loan_intent == "DEBTCONSOLIDATION" else 0],
-      
-      
-      
+      "loan_intent_VENTURE": [1 if loan_intent == "VENTURE" else 0]  
   }
   input_df = pd.DataFrame(data)
 with st.expander("Input features"):
@@ -78,12 +68,9 @@ with st.expander("Input features"):
 
 xgb_model = joblib.load("xgb_model.pkl")
 
-
-
 st.subheader("Prediction")
 if st.button("Predict Loan Status"):
     prediction = xgb_model.predict(input_df)
-    
     if prediction[0] == 1:
         st.error("Loan Rejected")
     else:
