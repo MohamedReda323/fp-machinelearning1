@@ -39,24 +39,63 @@ with st. sidebar:
   cb_person_cred_hist_length = st.slider("Credit history length",2,15,4)
   credit_score = st.slider("Credit score",497.50,773.50,640.00)
 
+  # بناء الـ data مع تطبيق فكرة الـ One-Hot Encoding بالأصفار والوحاد لكل الاختيارات
   data = {
-      "person_age":person_age,
-      "person_gender":person_gender,
-      "person_education":person_education,
-      "person_income":person_income,
-      "person_emp_exp":person_emp_exp,
-      "person_home_ownership":person_home_ownership,
-      "loan_amnt":loan_amnt,
-      "loan_intent":loan_intent,
-      "loan_int_rate":loan_int_rate,
-      "loan_percent_income":loan_percent_income,
-      "cb_person_cred_hist_length":cb_person_cred_hist_length,
-      "credit_score":credit_score,
-      "previous_loan_defaults_on_file":previous_loan_defaults_on_file
+      "person_age": [person_age],
+      "person_gender": [1 if person_gender == "male" else 0],
+      
+      # الـ Education Mapping برقم
+      "person_education": [
+          1 if person_education == "High School" else
+          2 if person_education == "Associate" else
+          3 if person_education == "Bachelor" else
+          4 if person_education == "Master" else 5
+      ],
+      
+      "person_income": [person_income],
+      "person_emp_exp": [person_emp_exp],
+      
+      # أعمدة الـ Home Ownership (تتعمل كولومز منفصلة بأصفار ووحاد)
+      "person_home_ownership_MORTGAGE": [1 if person_home_ownership == "MORTGAGE" else 0],
+      "person_home_ownership_OTHER": [1 if person_home_ownership == "OTHER" else 0],
+      "person_home_ownership_OWN": [1 if person_home_ownership == "OWN" else 0],
+      "person_home_ownership_RENT": [1 if person_home_ownership == "RENT" else 0],
+      
+      # أعمدة الـ Loan Intent (تتعمل كولومز منفصلة بأصفار ووحاد)
+      "loan_intent_DEBTCONSOLIDATION": [1 if loan_intent == "DEBTCONSOLIDATION" else 0],
+      "loan_intent_EDUCATION": [1 if loan_intent == "EDUCATION" else 0],
+      "loan_intent_HOMEIMPROVEMENT": [1 if loan_intent == "HOMEIMPROVEMENT" else 0],
+      "loan_intent_MEDICAL": [1 if loan_intent == "MEDICAL" else 0],
+      "loan_intent_PERSONAL": [1 if loan_intent == "PERSONAL" else 0],
+      "loan_intent_VENTURE": [1 if loan_intent == "VENTURE" else 0],
+      
+      "loan_amnt": [loan_amnt],
+      "loan_int_rate": [loan_int_rate],
+      "loan_percent_income": [loan_percent_income],
+      "cb_person_cred_hist_length": [cb_person_cred_hist_length],
+      "credit_score": [credit_score],
+      "previous_loan_defaults_on_file": [1 if previous_loan_defaults_on_file == "Yes" else 0]
   }
-  input_df = pd.DataFrame(data,index=[0])
+  
+  input_df = pd.DataFrame(data)
+
 with st.expander("Input features"):
   st.write("**Input Data**")
   input_df
 
+# تحميل الموديل
+xgb_model = joblib.load("xgb_model.pkl")
 
+# مطابقة الأعمدة النهائية بالموديل للأمان التام
+if hasattr(xgb_model, "feature_names_in_"):
+    input_df = input_df.reindex(columns=xgb_model.feature_names_in_, fill_value=0)
+
+# زر التوقع والنتيجة
+st.subheader("Prediction")
+if st.button("Predict Loan Status"):
+    prediction = xgb_model.predict(input_df)
+    
+    if prediction[0] == 1:
+        st.error("Loan Rejected ❌ (High Risk)")
+    else:
+        st.success("Loan Approved! ✅ (Low Risk)")
