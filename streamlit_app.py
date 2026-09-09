@@ -59,7 +59,7 @@ with st. sidebar:
       "loan_intent_HOMEIMPROVEMENT": [1 if loan_intent == "HOMEIMPROVEMENT" else 0],
       "loan_intent_MEDICAL": [1 if loan_intent == "MEDICAL" else 0],
       "loan_intent_PERSONAL": [1 if loan_intent == "PERSONAL" else 0],
-      "loan_intent_VENTURE": [1 if loan_intent == "VENTURE" else 0],
+      "loan_intent_VENTURE": [1 if loan_intent == "VENTURE" else 0]
 
 
       # "person_home_ownership_MORTGAGE": [1 if person_home_ownership == "MORTGAGE" else 0],
