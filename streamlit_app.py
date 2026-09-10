@@ -103,7 +103,7 @@ if st.button("Predict Loan Status"):
 
     prediction_svm = svm_model.predict(input_df_scaled)
 
-    if prediction[0] == 0:
+    if prediction_svm[0] == 0:
         st.error("Loan Rejected")
     else:
         st.success("Loan Approved!")
