@@ -74,7 +74,7 @@ with st.expander("Input features"):
     st.dataframe(input_df)
 
 xgb_model = joblib.load("xgb_model.pkl")
-svm_model = joblib.load("svm_model.pkl")
+# svm_model = joblib.load("svm_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
 
@@ -101,9 +101,9 @@ if st.button("Predict Loan Status"):
     else:
         st.success("Loan Approved!")
 
-    prediction_svm = svm_model.predict(input_df_scaled)
+    # prediction_svm = svm_model.predict(input_df_scaled)
 
-    if prediction_svm[0] == 0:
-        st.error("Loan Rejected")
-    else:
-        st.success("Loan Approved!")
+    # if prediction_svm[0] == 0:
+    #     st.error("Loan Rejected")
+    # else:
+    #     st.success("Loan Approved!")
